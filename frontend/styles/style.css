@@ -1,0 +1,294 @@
+.containar {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+.firstDiv {
+    height: 110px;
+    background-color: #1e2e79;
+}
+.firstDivChild {
+    width: 75%;
+    margin: auto;
+}
+#logo {
+    width: 150px;
+    height: 70px;
+    margin-top: 18px;
+    float: left;
+}
+.btn1 {
+    float: right;
+    width: 40px;
+    background-color: #1e2e79;
+    border: 0;
+    margin-top: 58px;
+}
+.btn1:hover{
+    border-bottom: 2px solid #fff;
+}
+#img1 {
+    float: right;
+    margin-top: 22px;
+    width: 25px;
+    height: 25px;
+}
+.secondDiv {
+    width: 75%;
+    height: 135%;
+    margin: auto;
+}
+.second-top {
+    height: 80px;
+    /* border: 1px solid red; */
+}
+.top-left {
+    float: left;
+    font-family: Georgia;
+    width: 54%;
+}
+.top-right {
+    float: left;
+    margin-top: 25px;
+}
+.btn2 {
+    width: 180px;
+    height: 35px;
+    background-color: #1e2e79;
+    color: #fff;
+    border: 1px solid #1e2e79;
+    border-radius: 7px;
+    font-size: 14px;
+    font-family: Segoe UI;
+}
+#bookmark {
+    width: 25px;
+    height: 20px;
+}
+.inp1 {
+    width: 220px;
+    height: 33px;
+    margin-left: 50px;
+    border: 0;
+    border-bottom: 1px solid #000;
+    font-family: Segoe UI;
+    font-size: 14px;
+}
+.second-middle {
+    height: 400px;
+    /* border: 1px solid blue; */
+}
+.middile-left {
+    width: 48%;
+    height: 100%;
+    float: left;
+}
+.middileTop {
+    width: 100%;
+    height: 70%;
+}
+.middileBottom {
+    width: 100%;
+    height: 30%;
+    background-color: #1c2b6e;
+    color: #fff;
+    font-family: Segoe UI;
+}
+.img2 {
+    width: 100%;
+    height: 100%;
+}
+.global-head {
+    margin: 0;
+    font-size: 22px;
+    word-spacing: 2px;
+    letter-spacing: 0.5px;
+    padding-left: 10px;
+}
+.para-one {
+    font-size: 13px;
+    line-height: 20px;
+    padding-left: 10px;
+}
+.middile-right {
+    float: left;
+    width: 49%;
+    height: 100%;
+    /* border: 1px solid red; */
+    margin-left: 27px;
+}
+.one {
+    width: 46%;
+    height: 60%;
+    /* border: 1px solid blue; */
+    float: left;
+    border-bottom: 1px solid red;
+}
+.one-top {
+    width: 100%;
+    height: 60%;
+}
+.one-bottom {
+    width: 100%;
+    height: 40%;
+    background-color: #1c2b6e;
+    color: #fff;
+    font-family: Segoe UI;
+}
+.img3 {
+    width: 100%;
+    height: 100%;
+}
+.head-four {
+    margin: 0;
+    padding-left: 10px;
+    letter-spacing: 1px;
+    padding-top: 10px;
+}
+.two {
+    width: 46%;
+    height: 60%;
+    /* border: 1px solid blue; */
+    float: right; 
+    border-bottom: 1px solid yellow;
+}
+.two-top {
+    width: 100%;
+    height: 60%;
+}
+.two-bottom {
+    width: 100%;
+    height: 40%;
+    background-color: #1c2b6e;
+    color: #fff;
+    font-family: Segoe UI;
+}
+.three {
+    clear: both;
+    width: 46%;
+    height: 31%;
+    background-color: #1e2e79;
+    float: left;
+    margin-top: 38px;
+    color: #fff;
+    font-family: Segoe UI;
+    font-size: 15px;
+    line-height: 25px;
+}
+.four {
+    width: 46%;
+    height: 31%;
+    background-color: #1e2e79;
+    float: right;
+    margin-top: 38px;
+    color: #fff;
+    font-family: Segoe UI;
+    font-size: 15px;
+    line-height: 25px;
+}
+.second-bottom {
+    height: 370px;
+    /* border: 1px solid #000; */
+}
+.bottom-left {
+    width: 32%;
+    height: 90%;
+    /* border: 1px solid red; */
+    float: left;
+    margin-top: 38px;
+    border-bottom: 1px solid red;
+}
+.bottom-middile {
+    width: 32%;
+    height: 90%;
+    /* border: 1px solid red; */
+    float: left;
+    margin-left: 19px;
+    margin-top: 38px;
+    border-bottom: 1px solid red;
+}
+.botom-right {
+    width: 32%;
+    height: 90%;
+    /* border: 1px solid red; */
+    float: right;
+    margin-top: 38px;
+    border-bottom: 1px solid red;
+}
+.five-top {
+    width: 100%;
+    height: 70%;
+    /* border: 1px solid red; */
+}
+.five-bottom {
+    width: 100%;
+    height: 30%;
+    background-color: #1e2e79;
+}
+.img5 {
+    width: 100%;
+    height: 100%;
+}
+.head-five {
+    margin: 0;
+    font-size: 20px;
+    word-spacing: 2px;
+    padding-left: 10px;
+    color: #fff;
+    font-family: Segoe UI;
+}
+.para-two {
+    font-size: 11px;
+    padding-left: 10px;
+    color: #fff;
+    font-weight: 100;
+    font-family: Segoe UI;
+}
+.third-div {
+    width: 75%;
+    height: 68%;
+    margin: auto;
+    /* border: 1px solid red; */
+}
+.third-top {
+    height: 60px;
+    /* border: 1px solid red; */
+}
+.sports {
+    font-family: Georgia;
+}
+.third-left {
+    width: 32%;
+    height: 360px;
+    /* border: 1px solid red; */
+    float: left;
+    border-bottom: 1px solid red;
+}
+.third-mid {
+    width: 32%;
+    height: 360px;
+    /* border: 1px solid red; */
+    float: left;
+    margin-left: 18px;
+    border-bottom: 1px solid red;
+}
+.third-right {
+    width: 32%;
+    height: 360px;
+    /* border: 1px solid red; */
+    float: right;
+    border-bottom: 1px solid red;
+}
+.head-six {
+    margin: 0;
+    font-size: 18px;
+    padding-left: 10px;
+    color: #fff;
+    font-family: Segoe UI;
+}
+.four-div {
+    height: 110px;
+    background-color: #1e2e79;
+    margin-top: 50px;
+}
