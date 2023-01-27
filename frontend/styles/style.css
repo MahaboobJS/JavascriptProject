@@ -123,7 +123,7 @@
     height: 60%;
     /* border: 1px solid blue; */
     float: left;
-    border-bottom: 1px solid red;
+    border-bottom: 2px solid red;
 }
 .one-top {
     width: 100%;
@@ -151,7 +151,7 @@
     height: 60%;
     /* border: 1px solid blue; */
     float: right; 
-    border-bottom: 1px solid yellow;
+    border-bottom: 2px solid yellow;
 }
 .two-top {
     width: 100%;
@@ -175,6 +175,7 @@
     font-family: Segoe UI;
     font-size: 15px;
     line-height: 25px;
+    border-bottom: 2px solid red;
 }
 .four {
     width: 46%;
@@ -186,6 +187,7 @@
     font-family: Segoe UI;
     font-size: 15px;
     line-height: 25px;
+    border-bottom: 2px solid red;
 }
 .second-bottom {
     height: 370px;
@@ -197,7 +199,7 @@
     /* border: 1px solid red; */
     float: left;
     margin-top: 38px;
-    border-bottom: 1px solid red;
+    border-bottom: 2px solid red;
 }
 .bottom-middile {
     width: 32%;
@@ -206,7 +208,7 @@
     float: left;
     margin-left: 19px;
     margin-top: 38px;
-    border-bottom: 1px solid red;
+    border-bottom: 2px solid red;
 }
 .botom-right {
     width: 32%;
@@ -214,7 +216,7 @@
     /* border: 1px solid red; */
     float: right;
     margin-top: 38px;
-    border-bottom: 1px solid red;
+    border-bottom: 2px solid red;
 }
 .five-top {
     width: 100%;
@@ -263,7 +265,7 @@
     height: 360px;
     /* border: 1px solid red; */
     float: left;
-    border-bottom: 1px solid red;
+    border-bottom: 2px solid red;
 }
 .third-mid {
     width: 32%;
@@ -271,14 +273,14 @@
     /* border: 1px solid red; */
     float: left;
     margin-left: 18px;
-    border-bottom: 1px solid red;
+    border-bottom: 2px solid red;
 }
 .third-right {
     width: 32%;
     height: 360px;
     /* border: 1px solid red; */
     float: right;
-    border-bottom: 1px solid red;
+    border-bottom: 2px solid red;
 }
 .head-six {
     margin: 0;

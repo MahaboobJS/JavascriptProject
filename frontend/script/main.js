@@ -60,7 +60,27 @@ function loadTopStories(data) {
     middleLeft.appendChild(mBottom);
 
 
+    var middleRight = document.getElementsByClassName('middile-right')[1];
 
+    var mRight = document.createElement('div');
+    mRight.setAttribute('class', 'one');
+    middleRight.appendChild(mRight);
 
+    var oTop = document.createElement('div');
+    oTop.setAttribute('class' , 'one-top');
+    mRight.appendChild(oTop);
 
+    if (data.fields.thumbnail) {
+        let img3 = document.createElement('img');
+        img3.setAttribute('class', 'img3');
+        img3.setAttribute('src', assets/img3.jpg);
+        img3.setAttribute('alt', 'News Image');
+        oTop.appendChild(img3);
+    } else {
+        let noThumb = document.createElement('div');
+        noThumb.setAttribute('class', 'no-thumbnail');
+        oTop.appendChild(noThumb);
+    }
+
+    
 }
