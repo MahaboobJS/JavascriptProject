@@ -14,7 +14,7 @@ function fetchData() {
         if (evt.target.readyState == 4 && evt.target.status == 200) {
             let data = JSON.parse(evt.target.response)
 
-            loadTopStories(data.response.results[0]);
+            loadTopStories(data.response.results);
         }
 
     }
@@ -30,10 +30,10 @@ function loadTopStories(data) {
 
     let middileTop = document.createElement('div');
     middileTop.setAttribute('class', 'middleTop');
-    if (data.fields.thumbnail) {
+    if (data[0].fields.thumbnail) {
         let img2 = document.createElement('img');
         img2.setAttribute('class', 'img2');
-        img2.setAttribute('src', data.fields.thumbnail);
+        img2.setAttribute('src', data[0].fields.thumbnail);
         img2.setAttribute('alt', 'News Image');
         middileTop.appendChild(img2);
     } else {
@@ -48,11 +48,11 @@ function loadTopStories(data) {
     mBottom.setAttribute('class', 'middileBottom');
     let gH2 = document.createElement('h2');
     gH2.setAttribute('class', 'global-head');
-    gH2.innerText = data.fields.headline;
+    gH2.innerText = data[0].fields.headline;
 
     let para = document.createElement('p');
     para.setAttribute('class', 'para-one');
-    para.innerText = data.fields.trailText;
+    para.innerText = data[0].fields.trailText;
 
     mBottom.appendChild(gH2);
     mBottom.appendChild(para);
@@ -60,27 +60,45 @@ function loadTopStories(data) {
     middleLeft.appendChild(mBottom);
 
 
-    var middleRight = document.getElementsByClassName('middile-right')[1];
+    // middleRIght start here
+
+    var middleRight = document.getElementsByClassName('middile-right')[0];
 
     var mRight = document.createElement('div');
     mRight.setAttribute('class', 'one');
-    middleRight.appendChild(mRight);
+    middleRight.prepend(mRight);
+
+    // middleRight.insertBefore(mRight, middleRight.children[2])
 
     var oTop = document.createElement('div');
-    oTop.setAttribute('class' , 'one-top');
+    oTop.setAttribute('class', 'one-top');
     mRight.appendChild(oTop);
 
-    if (data.fields.thumbnail) {
+    if (data[1].fields.thumbnail) {
         let img3 = document.createElement('img');
+        // var clasName = 'img3';
         img3.setAttribute('class', 'img3');
-        img3.setAttribute('src', assets/img3.jpg);
+        img3.setAttribute('src', data[1].fields.thumbnail);
         img3.setAttribute('alt', 'News Image');
         oTop.appendChild(img3);
     } else {
         let noThumb = document.createElement('div');
         noThumb.setAttribute('class', 'no-thumbnail');
+        noThumb.style.height = '144px';
         oTop.appendChild(noThumb);
     }
 
-    
+
+
+    // right second elemet
+
+
+
+
+}
+
+function secondRIght(){
+}
+
+function thridrRIght(){
 }
