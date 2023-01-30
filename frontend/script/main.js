@@ -21,6 +21,104 @@ function fetchData() {
 
 
 }
+
+function fetchSportsData() {
+
+    let key = '37a15cab-b02a-4274-a344-68fc3f5cb899';
+    let baseURL = 'https://content.guardianapis.com/search'
+    let url = `${baseURL}?section=sports&show-fields=headline,trailText,thumbnail&api-key=${key}`;
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', url);
+    xmlhttp.send();
+
+    xmlhttp.onreadystatechange = function (evt) {
+        if (evt.target.readyState == 4 && evt.target.status == 200) {
+            let data = JSON.parse(evt.target.response)
+            console.log(data);
+        }
+
+    }
+}
+
+function fetchCulturesData() {
+
+    let key = '37a15cab-b02a-4274-a344-68fc3f5cb899';
+    let baseURL = 'https://content.guardianapis.com/search'
+    let url = `${baseURL}?section=culture&show-fields=headline,trailText,thumbnail&api-key=${key}`;
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', url);
+    xmlhttp.send();
+
+    xmlhttp.onreadystatechange = function (evt) {
+        if (evt.target.readyState == 4 && evt.target.status == 200) {
+            let data = JSON.parse(evt.target.response)
+            console.log(data);
+        }
+
+    }
+}
+
+function fetchlifeAndStyleData() {
+
+    let key = '37a15cab-b02a-4274-a344-68fc3f5cb899';
+    let baseURL = 'https://content.guardianapis.com/search'
+    let url = `${baseURL}?section=lifeandstyle&show-fields=headline,trailText,thumbnail&api-key=${key}`;
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', url);
+    xmlhttp.send();
+
+    xmlhttp.onreadystatechange = function (evt) {
+        if (evt.target.readyState == 4 && evt.target.status == 200) {
+            let data = JSON.parse(evt.target.response)
+            console.log(data);
+        }
+
+    }
+}
+
+fetchSportsData();
+fetchCulturesData();
+fetchlifeAndStyleData();
+
+
+
+function createTile(data) {
+    var tileCon = document.createElement('div');
+    tileCon.setAttribute('class', 'bottom-left');
+
+    var fTop = document.createElement('div');
+    fTop.setAttribute('class', 'five-top');
+    tileCon.appendChild(fTop);
+
+    if (data.fields.thumbnail) {
+        let img5 = document.createElement('img');
+        img5.setAttribute('class', 'img5');
+        img5.setAttribute('src', data.fields.thumbnail);
+        img5.setAttribute('alt', 'News Image');
+        fTop.appendChild(img5);
+    } else {
+        let noThumb = document.createElement('div');
+        noThumb.setAttribute('class', 'no-thumbnail');
+        fTop.appendChild(noThumb);
+    }
+
+    var fbottom = document.createElement('div');
+    fbottom.setAttribute('class', 'five-bottom');
+    tileCon.appendChild(fbottom);
+
+    let fiveHead3 = document.createElement('h3');
+    fiveHead3.setAttribute('class', 'head-five');
+    fiveHead3.innerText = data.fields.headline;
+
+    fbottom.appendChild(fiveHead3);
+
+    let fivepara = document.createElement('p');
+    fivepara.setAttribute('class', 'para-two');
+    fivepara.innerText = data.fields.trailText;
+    fbottom.appendChild(fivepara);
+
+    return tileCon;
+}
 fetchData();
 
 function loadTopStories(data) {
@@ -104,7 +202,7 @@ function loadTopStories(data) {
 
     var tDiv = document.createElement('div');
     tDiv.setAttribute('class', 'two');
-    middleRight.insertBefore(tDiv,middleRight.children[1]);
+    middleRight.insertBefore(tDiv, middleRight.children[1]);
 
     var tTop = document.createElement('div');
     tTop.setAttribute('class', 'two-top');
@@ -134,12 +232,12 @@ function loadTopStories(data) {
     tDiv.appendChild(tBottom);
 
     // Three start here
- 
+
     var threeDiv = document.createElement('div');
     threeDiv.setAttribute('class', 'three');
-    middleRight.insertBefore(threeDiv,middleRight.children[2]);
+    middleRight.insertBefore(threeDiv, middleRight.children[2]);
 
-    
+
     let spaikeHead4 = document.createElement('h4');
     spaikeHead4.setAttribute('class', 'head-four');
     spaikeHead4.innerText = data[3].fields.headline;
@@ -148,12 +246,12 @@ function loadTopStories(data) {
     threeDiv.appendChild(spaikeHead4);
 
     // Four start here
- 
+
     var fourDiv = document.createElement('div');
     fourDiv.setAttribute('class', 'four');
     middleRight.appendChild(fourDiv);
 
-    
+
     let spanishHead4 = document.createElement('h4');
     spanishHead4.setAttribute('class', 'head-four');
     spanishHead4.innerText = data[4].fields.headline;
@@ -165,235 +263,216 @@ function loadTopStories(data) {
 
     var sBottom = document.getElementsByClassName('second-bottom')[0];
 
-    
+
     // Bottom left start here
 
-    var bLeft = document.createElement('div');
-    bLeft.setAttribute('class', 'bottom-left');
-    sBottom.prepend(bLeft);
 
-    var fTop = document.createElement('div');
-    fTop.setAttribute('class' , 'five-top');
-    bLeft.appendChild(fTop);
-
-    if (data[5].fields.thumbnail) {
-        let img5 = document.createElement('img');
-        img5.setAttribute('class', 'img5');
-        img5.setAttribute('src', data[5].fields.thumbnail);
-        img5.setAttribute('alt', 'News Image');
-        fTop.appendChild(img5);
-    } else {
-        let noThumb = document.createElement('div');
-        noThumb.setAttribute('class', 'no-thumbnail');
-        fTop.appendChild(noThumb);
+    for (var i = 0; i < data.slice(5, 8).length; i++) {
+        sBottom.appendChild(createTile(data[i]))
     }
-  
-    var fbottom = document.createElement('div');
-    fbottom.setAttribute('class' , 'five-bottom');
-    bLeft.appendChild(fbottom);
 
-    let fiveHead3 = document.createElement('h3');
-    fiveHead3.setAttribute('class', 'head-five');
-    fiveHead3.innerText = data[5].fields.headline;
 
-    fbottom.appendChild(fiveHead3);
 
-    let fivepara = document.createElement('p');
-    fivepara.setAttribute('class', 'para-two');
-    fivepara.innerText = data[5].fields.trailText;
 
-    fbottom.appendChild(fivepara);
 
     // Bottom middile start here
 
-    var bMiddile = document.createElement('div');
-    bMiddile.setAttribute('class' ,'bottom-middile');
-    sBottom.appendChild(bMiddile);
+    // var bMiddile = document.createElement('div');
+    // bMiddile.setAttribute('class', 'bottom-middile');
+    // sBottom.appendChild(bMiddile);
 
-    var topFive = document.createElement('div');
-    topFive.setAttribute('class' , 'five-top');
-    bMiddile.appendChild(topFive);
+    // var topFive = document.createElement('div');
+    // topFive.setAttribute('class', 'five-top');
+    // bMiddile.appendChild(topFive);
 
-    if (data[6].fields.thumbnail) {
-        let img6 = document.createElement('img');
-        img6.setAttribute('class', 'img5');
-        img6.setAttribute('src', data[6].fields.thumbnail);
-        img6.setAttribute('alt', 'News Image');
-        topFive.appendChild(img6);
-    } else {
-        let noThumb = document.createElement('div');
-        noThumb.setAttribute('class', 'no-thumbnail');
-        topFive.appendChild(noThumb);
-    }
-  
-    var bottomFive = document.createElement('div');
-    bottomFive.setAttribute('class' , 'five-bottom');
-    bMiddile.appendChild(bottomFive);
+    // if (data[6].fields.thumbnail) {
+    //     let img6 = document.createElement('img');
+    //     img6.setAttribute('class', 'img5');
+    //     img6.setAttribute('src', data[6].fields.thumbnail);
+    //     img6.setAttribute('alt', 'News Image');
+    //     topFive.appendChild(img6);
+    // } else {
+    //     let noThumb = document.createElement('div');
+    //     noThumb.setAttribute('class', 'no-thumbnail');
+    //     topFive.appendChild(noThumb);
+    // }
 
-    let fHead5 = document.createElement('h3');
-    fHead5.setAttribute('class', 'head-five');
-    fHead5.innerText = data[6].fields.headline;
+    // var bottomFive = document.createElement('div');
+    // bottomFive.setAttribute('class', 'five-bottom');
+    // bMiddile.appendChild(bottomFive);
 
-    bottomFive.appendChild(fHead5);
+    // let fHead5 = document.createElement('h3');
+    // fHead5.setAttribute('class', 'head-five');
+    // fHead5.innerText = data[6].fields.headline;
 
-    let fpara = document.createElement('p');
-    fpara.setAttribute('class', 'para-two');
-    fpara.innerText = data[6].fields.trailText;
+    // bottomFive.appendChild(fHead5);
 
-    bottomFive.appendChild(fpara);
+    // let fpara = document.createElement('p');
+    // fpara.setAttribute('class', 'para-two');
+    // fpara.innerText = data[6].fields.trailText;
 
-    // Bottom Right start here
+    // bottomFive.appendChild(fpara);
 
-    var bRight = document.createElement('div');
-    bRight.setAttribute('class' , 'botom-right');
-    sBottom.appendChild(bRight);
+    // // Bottom Right start here
 
-    var fiveTop = document.createElement('div');
-    fiveTop.setAttribute('class' , 'five-top');
-    bRight.appendChild(fiveTop);
+    // var bRight = document.createElement('div');
+    // bRight.setAttribute('class', 'botom-right');
+    // sBottom.appendChild(bRight);
 
-    if (data[7].fields.thumbnail) {
-        let img7 = document.createElement('img');
-        img7.setAttribute('class', 'img5');
-        img7.setAttribute('src', data[7].fields.thumbnail);
-        img7.setAttribute('alt', 'News Image');
-        fiveTop.appendChild(img7);
-    } else {
-        let noThumb = document.createElement('div');
-        noThumb.setAttribute('class', 'no-thumbnail');
-        fiveTop.appendChild(noThumb);
-    }
+    // var fiveTop = document.createElement('div');
+    // fiveTop.setAttribute('class', 'five-top');
+    // bRight.appendChild(fiveTop);
 
-    var fiveBottom = document.createElement('div');
-    fiveBottom.setAttribute('class' , 'five-bottom');
-    bRight.appendChild(fiveBottom);
+    // if (data[7].fields.thumbnail) {
+    //     let img7 = document.createElement('img');
+    //     img7.setAttribute('class', 'img5');
+    //     img7.setAttribute('src', data[7].fields.thumbnail);
+    //     img7.setAttribute('alt', 'News Image');
+    //     fiveTop.appendChild(img7);
+    // } else {
+    //     let noThumb = document.createElement('div');
+    //     noThumb.setAttribute('class', 'no-thumbnail');
+    //     fiveTop.appendChild(noThumb);
+    // }
 
-    let fH5 = document.createElement('h3');
-    fH5.setAttribute('class', 'head-five');
-    fH5.innerText = data[7].fields.headline;
+    // var fiveBottom = document.createElement('div');
+    // fiveBottom.setAttribute('class', 'five-bottom');
+    // bRight.appendChild(fiveBottom);
 
-    fiveBottom.appendChild(fH5);
+    // let fH5 = document.createElement('h3');
+    // fH5.setAttribute('class', 'head-five');
+    // fH5.innerText = data[7].fields.headline;
 
-    let fp5 = document.createElement('p');
-    fp5.setAttribute('class', 'para-two');
-    fp5.innerText = data[7].fields.trailText;
+    // fiveBottom.appendChild(fH5);
 
-    fiveBottom.appendChild(fp5);
+    // let fp5 = document.createElement('p');
+    // fp5.setAttribute('class', 'para-two');
+    // fp5.innerText = data[7].fields.trailText;
+
+    // fiveBottom.appendChild(fp5);
 
     // Third div start here
 
     var thirdDiv = document.getElementsByClassName('third-div')[0];
 
-    // Third top start here
-
-    var thirdTop = document.createElement('div');
-    thirdTop.setAttribute('class' , 'third-top');
-    thirdDiv.prepend(thirdTop);
-
-    var sportsH1 = document.createElement('h1');
-    sportsH1.setAttribute('class' , 'sports');
-    sportsH1.innerText = 'Sports';
-    thirdDiv.appendChild(sportsH1);
-
-    // Third bottom start here
-
-    var bottomThree = document.createElement('div');
-    bottomThree.setAttribute('class' , 'third-bottom');
-    thirdDiv.appendChild(bottomThree);
-
-    var tLeft = document.createElement('div');
-    tLeft.setAttribute('class' , 'third-left');
-    bottomThree.appendChild(tLeft);
-
-    var fT = document.createElement('div');
-    fT.setAttribute('class' , 'five-top');
-    tLeft.appendChild(fT);
-
-    if (data[8].fields.thumbnail) {
-        let img8 = document.createElement('img');
-        img8.setAttribute('class', 'img5');
-        img8.setAttribute('src', data[8].fields.thumbnail);
-        img8.setAttribute('alt', 'News Image');
-        fT.appendChild(img8);
-    } else {
-        let noThumb = document.createElement('div');
-        noThumb.setAttribute('class', 'no-thumbnail');
-        fT.appendChild(noThumb);
+    for (var i = 0; i < data.slice(8, data.length).length; i++) {
+        thirdDiv.appendChild(createTile(data[i]))
     }
 
-    var threeFiveBottom = document.createElement('div');
-    threeFiveBottom.setAttribute('class' , 'five-bottom');
-    tLeft.appendChild(threeFiveBottom);
+    // thirdDiv.appendChild(createTile(data[8]))
+    // thirdDiv.appendChild(createTile(data[9]))
+    // thirdDiv.appendChild(createTile(data[1]))
 
-    let fH8 = document.createElement('h3');
-    fH8.setAttribute('class', 'head-five');
-    fH8.innerText = data[8].fields.headline;
+    // Third top start here
 
-    threeFiveBottom.appendChild(fH8);
+    // var thirdTop = document.createElement('div');
+    // thirdTop.setAttribute('class', 'third-top');
+    // thirdDiv.prepend(thirdTop);
+
+    // var sportsH1 = document.createElement('h1');
+    // sportsH1.setAttribute('class', 'sports');
+    // sportsH1.innerText = 'Sports';
+    // thirdDiv.appendChild(sportsH1);
+
+    // // Third bottom start here
+
+    // var bottomThree = document.createElement('div');
+    // bottomThree.setAttribute('class', 'third-bottom');
+    // thirdDiv.appendChild(bottomThree);
+
+    // var tLeft = document.createElement('div');
+    // tLeft.setAttribute('class', 'third-left');
+    // bottomThree.appendChild(tLeft);
+
+    // var fT = document.createElement('div');
+    // fT.setAttribute('class', 'five-top');
+    // tLeft.appendChild(fT);
+
+    // if (data[8].fields.thumbnail) {
+    //     let img8 = document.createElement('img');
+    //     img8.setAttribute('class', 'img5');
+    //     img8.setAttribute('src', data[8].fields.thumbnail);
+    //     img8.setAttribute('alt', 'News Image');
+    //     fT.appendChild(img8);
+    // } else {
+    //     let noThumb = document.createElement('div');
+    //     noThumb.setAttribute('class', 'no-thumbnail');
+    //     fT.appendChild(noThumb);
+    // }
+
+    // var threeFiveBottom = document.createElement('div');
+    // threeFiveBottom.setAttribute('class', 'five-bottom');
+    // tLeft.appendChild(threeFiveBottom);
+
+    // let fH8 = document.createElement('h3');
+    // fH8.setAttribute('class', 'head-five');
+    // fH8.innerText = data[8].fields.headline;
+
+    // threeFiveBottom.appendChild(fH8);
 
     // Third middile start here
 
-    var thirdMid = document.createElement('div');
-    thirdMid.setAttribute('class' , 'third-mid');
-    thirdDiv.appendChild(thirdMid);
+    // var thirdMid = document.createElement('div');
+    // thirdMid.setAttribute('class', 'third-mid');
+    // thirdDiv.appendChild(thirdMid);
 
-    var fT9 = document.createElement('div');
-    fT9.setAttribute('class' , 'five-top');
-    thirdMid.appendChild(fT9);
+    // var fT9 = document.createElement('div');
+    // fT9.setAttribute('class', 'five-top');
+    // thirdMid.appendChild(fT9);
 
-    if (data[9].fields.thumbnail) {
-        let img9 = document.createElement('img');
-        img9.setAttribute('class', 'img5');
-        img9.setAttribute('src', data[9].fields.thumbnail);
-        img9.setAttribute('alt', 'News Image');
-        fT9.appendChild(img9);
-    } else {
-        let noThumb = document.createElement('div');
-        noThumb.setAttribute('class', 'no-thumbnail');
-        fT9.appendChild(noThumb);
-    }
+    // if (data[9].fields.thumbnail) {
+    //     let img9 = document.createElement('img');
+    //     img9.setAttribute('class', 'img5');
+    //     img9.setAttribute('src', data[9].fields.thumbnail);
+    //     img9.setAttribute('alt', 'News Image');
+    //     fT9.appendChild(img9);
+    // } else {
+    //     let noThumb = document.createElement('div');
+    //     noThumb.setAttribute('class', 'no-thumbnail');
+    //     fT9.appendChild(noThumb);
+    // }
 
-    var midFiveBottom = document.createElement('div');
-    midFiveBottom.setAttribute('class' , 'five-bottom');
-    thirdMid.appendChild(midFiveBottom);
+    // var midFiveBottom = document.createElement('div');
+    // midFiveBottom.setAttribute('class', 'five-bottom');
+    // thirdMid.appendChild(midFiveBottom);
 
-    let fH9 = document.createElement('h3');
-    fH9.setAttribute('class', 'head-five');
-    fH9.innerText = data[9].fields.headline;
+    // let fH9 = document.createElement('h3');
+    // fH9.setAttribute('class', 'head-five');
+    // fH9.innerText = data[9].fields.headline;
 
-    midFiveBottom.appendChild(fH9);
+    // midFiveBottom.appendChild(fH9);
 
-     // Third Right start here
+    // Third Right start here
 
-     var thirdright = document.createElement('div');
-     thirdright.setAttribute('class' , 'third-right');
-     thirdDiv.appendChild(thirdright);
- 
-     var fT10 = document.createElement('div');
-     fT10.setAttribute('class' , 'five-top');
-     thirdright.appendChild(fT10);
- 
-     if (data[7].fields.thumbnail) {
-         let img10 = document.createElement('img');
-         img10.setAttribute('class', 'img5');
-         img10.setAttribute('src', data[7].fields.thumbnail);
-         img10.setAttribute('alt', 'News Image');
-         fT10.appendChild(img10);
-     } else {
-         let noThumb = document.createElement('div');
-         noThumb.setAttribute('class', 'no-thumbnail');
-         fT10.appendChild(noThumb);
-     }
- 
-     var rightFiveBottom = document.createElement('div');
-     rightFiveBottom.setAttribute('class' , 'five-bottom');
-     thirdright.appendChild(rightFiveBottom);
- 
-     let fH10 = document.createElement('h3');
-     fH10.setAttribute('class', 'head-five');
-     fH10.innerText = data[7].fields.headline;
- 
-     rightFiveBottom.appendChild(fH10);
+    // var thirdright = document.createElement('div');
+    // thirdright.setAttribute('class', 'third-right');
+    // thirdDiv.appendChild(thirdright);
+
+    // var fT10 = document.createElement('div');
+    // fT10.setAttribute('class', 'five-top');
+    // thirdright.appendChild(fT10);
+
+    // if (data[7].fields.thumbnail) {
+    //     let img10 = document.createElement('img');
+    //     img10.setAttribute('class', 'img5');
+    //     img10.setAttribute('src', data[7].fields.thumbnail);
+    //     img10.setAttribute('alt', 'News Image');
+    //     fT10.appendChild(img10);
+    // } else {
+    //     let noThumb = document.createElement('div');
+    //     noThumb.setAttribute('class', 'no-thumbnail');
+    //     fT10.appendChild(noThumb);
+    // }
+
+    // var rightFiveBottom = document.createElement('div');
+    // rightFiveBottom.setAttribute('class', 'five-bottom');
+    // thirdright.appendChild(rightFiveBottom);
+
+    // let fH10 = document.createElement('h3');
+    // fH10.setAttribute('class', 'head-five');
+    // fH10.innerText = data[7].fields.headline;
+
+    // rightFiveBottom.appendChild(fH10);
 
 }
 
