@@ -1,26 +1,26 @@
 
 
 
-function fetchData() {
+// function fetchData() {
 
-    let key = '37a15cab-b02a-4274-a344-68fc3f5cb899';
-    let baseURL = 'https://content.guardianapis.com/search'
-    let url = `${baseURL}?section=news&show-fields=headline,trailText,thumbnail&api-key=${key}`;
-    let xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', url);
-    xmlhttp.send();
+//     let key = '37a15cab-b02a-4274-a344-68fc3f5cb899';
+//     let baseURL = 'https://content.guardianapis.com/search'
+//     let url = `${baseURL}?section=news&show-fields=headline,trailText,thumbnail&api-key=${key}`;
+//     let xmlhttp = new XMLHttpRequest();
+//     xmlhttp.open('GET', url);
+//     xmlhttp.send();
 
-    xmlhttp.onreadystatechange = function (evt) {
-        if (evt.target.readyState == 4 && evt.target.status == 200) {
-            let data = JSON.parse(evt.target.response)
+//     xmlhttp.onreadystatechange = function (evt) {
+//         if (evt.target.readyState == 4 && evt.target.status == 200) {
+//             let data = JSON.parse(evt.target.response)
 
-            loadTopStories(data.response.results);
-        }
+//             console.log(data);
+//         }
 
-    }
+//     }
 
 
-}
+// }
 
 function fetchSportsData() {
 
@@ -83,19 +83,23 @@ fetchlifeAndStyleData();
 
 
 function createTile(data) {
+
+    var secondLeftTile = document.getElementsByClassName('second-middle')[0];
+
     var tileCon = document.createElement('div');
-    tileCon.setAttribute('class', 'bottom-left');
+    tileCon.setAttribute('class', 'tile');
+    secondLeftTile.appendChild(tileCon);
 
     var fTop = document.createElement('div');
-    fTop.setAttribute('class', 'five-top');
+    fTop.setAttribute('class', 'tile-body');
     tileCon.appendChild(fTop);
 
     if (data.fields.thumbnail) {
-        let img5 = document.createElement('img');
-        img5.setAttribute('class', 'img5');
-        img5.setAttribute('src', data.fields.thumbnail);
-        img5.setAttribute('alt', 'News Image');
-        fTop.appendChild(img5);
+        let img2 = document.createElement('img');
+        img2.setAttribute('class', 'img2');
+        img2.setAttribute('src', data.fields.thumbnail);
+        img2.setAttribute('alt', 'News Image');
+        fTop.appendChild(img2);
     } else {
         let noThumb = document.createElement('div');
         noThumb.setAttribute('class', 'no-thumbnail');
@@ -103,173 +107,174 @@ function createTile(data) {
     }
 
     var fbottom = document.createElement('div');
-    fbottom.setAttribute('class', 'five-bottom');
+    fbottom.setAttribute('class', 'tile-footer');
     tileCon.appendChild(fbottom);
 
-    let fiveHead3 = document.createElement('h3');
-    fiveHead3.setAttribute('class', 'head-five');
-    fiveHead3.innerText = data.fields.headline;
+    let titleHead3 = document.createElement('h3');
+    titleHead3.setAttribute('class', 'tile-title');
+    titleHead3.innerText = data.fields.headline;
 
-    fbottom.appendChild(fiveHead3);
+    fbottom.appendChild(titleHead3);
 
-    let fivepara = document.createElement('p');
-    fivepara.setAttribute('class', 'para-two');
-    fivepara.innerText = data.fields.trailText;
-    fbottom.appendChild(fivepara);
+    let titlepara = document.createElement('p');
+    titlepara.setAttribute('class', 'tile-subtitle');
+    titlepara.innerText = data.fields.trailText;
+    fbottom.appendChild(titlepara);
 
     return tileCon;
 }
-fetchData();
+// fetchData(createTile())
 
-function loadTopStories(data) {
+createTile()
 
-
-    let middleLeft = document.getElementsByClassName('middile-left')[0];
-
-    let middileTop = document.createElement('div');
-    middileTop.setAttribute('class', 'middleTop');
-    if (data[0].fields.thumbnail) {
-        let img2 = document.createElement('img');
-        img2.setAttribute('class', 'img2');
-        img2.setAttribute('src', data[0].fields.thumbnail);
-        img2.setAttribute('alt', 'News Image');
-        middileTop.appendChild(img2);
-    } else {
-        let noThumb = document.createElement('div');
-        noThumb.setAttribute('class', 'no-thumbnail');
-        middileTop.appendChild(noThumb);
-    }
-    middleLeft.appendChild(middileTop);
+// function loadTopStories(data) {
 
 
-    let mBottom = document.createElement('div');
-    mBottom.setAttribute('class', 'middileBottom');
-    let gH2 = document.createElement('h2');
-    gH2.setAttribute('class', 'global-head');
-    gH2.innerText = data[0].fields.headline;
+//     let middleLeft = document.getElementsByClassName('middile-left')[0];
 
-    let para = document.createElement('p');
-    para.setAttribute('class', 'para-one');
-    para.innerText = data[0].fields.trailText;
+//     let middileTop = document.createElement('div');
+//     middileTop.setAttribute('class', 'middleTop');
+//     if (data[0].fields.thumbnail) {
+//         let img2 = document.createElement('img');
+//         img2.setAttribute('class', 'img2');
+//         img2.setAttribute('src', data[0].fields.thumbnail);
+//         img2.setAttribute('alt', 'News Image');
+//         middileTop.appendChild(img2);
+//     } else {
+//         let noThumb = document.createElement('div');
+//         noThumb.setAttribute('class', 'no-thumbnail');
+//         middileTop.appendChild(noThumb);
+//     }
 
-    mBottom.appendChild(gH2);
-    mBottom.appendChild(para);
 
-    middleLeft.appendChild(mBottom);
+//     let mBottom = document.createElement('div');
+//     mBottom.setAttribute('class', 'middileBottom');
+//     let gH2 = document.createElement('h2');
+//     gH2.setAttribute('class', 'global-head');
+//     gH2.innerText = data[0].fields.headline;
+
+//     let para = document.createElement('p');
+//     para.setAttribute('class', 'para-one');
+//     para.innerText = data[0].fields.trailText;
+
+//     mBottom.appendChild(gH2);
+//     mBottom.appendChild(para);
+
+//     middleLeft.appendChild(mBottom);
 
 
     // middleRIght start here
 
-    var middleRight = document.getElementsByClassName('middile-right')[0];
+    // var middleRight = document.getElementsByClassName('middile-right')[0];
 
     // One start here
 
-    var mRight = document.createElement('div');
-    mRight.setAttribute('class', 'one');
-    middleRight.prepend(mRight);
+    // var mRight = document.createElement('div');
+    // mRight.setAttribute('class', 'one');
+    // middleRight.prepend(mRight);
 
     // middleRight.insertBefore(mRight, middleRight.children[2])
 
-    var oTop = document.createElement('div');
-    oTop.setAttribute('class', 'one-top');
-    mRight.appendChild(oTop);
+    // var oTop = document.createElement('div');
+    // oTop.setAttribute('class', 'one-top');
+    // mRight.appendChild(oTop);
 
-    if (data[1].fields.thumbnail) {
-        let img3 = document.createElement('img');
+    // if (data[1].fields.thumbnail) {
+    //     let img3 = document.createElement('img');
         // var clasName = 'img3';
-        img3.setAttribute('class', 'img3');
-        img3.setAttribute('src', data[1].fields.thumbnail);
-        img3.setAttribute('alt', 'News Image');
-        oTop.appendChild(img3);
-    } else {
-        let noThumb = document.createElement('div');
-        noThumb.setAttribute('class', 'no-thumbnail');
-        noThumb.style.height = '144px';
-        oTop.appendChild(noThumb);
-    }
+    //     img3.setAttribute('class', 'img3');
+    //     img3.setAttribute('src', data[1].fields.thumbnail);
+    //     img3.setAttribute('alt', 'News Image');
+    //     oTop.appendChild(img3);
+    // } else {
+    //     let noThumb = document.createElement('div');
+    //     noThumb.setAttribute('class', 'no-thumbnail');
+    //     noThumb.style.height = '144px';
+    //     oTop.appendChild(noThumb);
+    // }
 
-    let oBottom = document.createElement('div');
-    oBottom.setAttribute('class', 'one-bottom');
-    let whiteHead4 = document.createElement('h4');
-    whiteHead4.setAttribute('class', 'head-four');
-    whiteHead4.innerText = data[1].fields.headline;
+    // let oBottom = document.createElement('div');
+    // oBottom.setAttribute('class', 'one-bottom');
+    // let whiteHead4 = document.createElement('h4');
+    // whiteHead4.setAttribute('class', 'head-four');
+    // whiteHead4.innerText = data[1].fields.headline;
 
 
-    oBottom.appendChild(whiteHead4);
-    mRight.appendChild(oBottom);
+    // oBottom.appendChild(whiteHead4);
+    // mRight.appendChild(oBottom);
 
     // Two start here
 
-    var tDiv = document.createElement('div');
-    tDiv.setAttribute('class', 'two');
-    middleRight.insertBefore(tDiv, middleRight.children[1]);
+    // var tDiv = document.createElement('div');
+    // tDiv.setAttribute('class', 'two');
+    // middleRight.insertBefore(tDiv, middleRight.children[1]);
 
-    var tTop = document.createElement('div');
-    tTop.setAttribute('class', 'two-top');
-    tDiv.appendChild(tTop);
+    // var tTop = document.createElement('div');
+    // tTop.setAttribute('class', 'two-top');
+    // tDiv.appendChild(tTop);
 
-    if (data[2].fields.thumbnail) {
-        let img4 = document.createElement('img');
-        img4.setAttribute('class', 'img3');
-        img4.setAttribute('src', data[2].fields.thumbnail);
-        img4.setAttribute('alt', 'News Image');
-        tDiv.appendChild(img4);
-    } else {
-        let noThumb = document.createElement('div');
-        noThumb.setAttribute('class', 'no-thumbnail');
-        noThumb.style.height = '144px';
-        tDiv.appendChild(noThumb);
-    }
+    // if (data[2].fields.thumbnail) {
+    //     let img4 = document.createElement('img');
+    //     img4.setAttribute('class', 'img3');
+    //     img4.setAttribute('src', data[2].fields.thumbnail);
+    //     img4.setAttribute('alt', 'News Image');
+    //     tDiv.appendChild(img4);
+    // } else {
+    //     let noThumb = document.createElement('div');
+    //     noThumb.setAttribute('class', 'no-thumbnail');
+    //     noThumb.style.height = '144px';
+    //     tDiv.appendChild(noThumb);
+    // }
 
-    let tBottom = document.createElement('div');
-    tBottom.setAttribute('class', 'two-bottom');
-    let sadiqHead4 = document.createElement('h4');
-    sadiqHead4.setAttribute('class', 'head-four');
-    sadiqHead4.innerText = data[2].fields.headline;
+    // let tBottom = document.createElement('div');
+    // tBottom.setAttribute('class', 'two-bottom');
+    // let sadiqHead4 = document.createElement('h4');
+    // sadiqHead4.setAttribute('class', 'head-four');
+    // sadiqHead4.innerText = data[2].fields.headline;
 
 
-    tBottom.appendChild(sadiqHead4);
-    tDiv.appendChild(tBottom);
+    // tBottom.appendChild(sadiqHead4);
+    // tDiv.appendChild(tBottom);
 
     // Three start here
 
-    var threeDiv = document.createElement('div');
-    threeDiv.setAttribute('class', 'three');
-    middleRight.insertBefore(threeDiv, middleRight.children[2]);
+    // var threeDiv = document.createElement('div');
+    // threeDiv.setAttribute('class', 'three');
+    // middleRight.insertBefore(threeDiv, middleRight.children[2]);
 
 
-    let spaikeHead4 = document.createElement('h4');
-    spaikeHead4.setAttribute('class', 'head-four');
-    spaikeHead4.innerText = data[3].fields.headline;
+    // let spaikeHead4 = document.createElement('h4');
+    // spaikeHead4.setAttribute('class', 'head-four');
+    // spaikeHead4.innerText = data[3].fields.headline;
 
 
-    threeDiv.appendChild(spaikeHead4);
+    // threeDiv.appendChild(spaikeHead4);
 
     // Four start here
 
-    var fourDiv = document.createElement('div');
-    fourDiv.setAttribute('class', 'four');
-    middleRight.appendChild(fourDiv);
+    // var fourDiv = document.createElement('div');
+    // fourDiv.setAttribute('class', 'four');
+    // middleRight.appendChild(fourDiv);
 
 
-    let spanishHead4 = document.createElement('h4');
-    spanishHead4.setAttribute('class', 'head-four');
-    spanishHead4.innerText = data[4].fields.headline;
+    // let spanishHead4 = document.createElement('h4');
+    // spanishHead4.setAttribute('class', 'head-four');
+    // spanishHead4.innerText = data[4].fields.headline;
 
 
-    fourDiv.appendChild(spanishHead4);
+    // fourDiv.appendChild(spanishHead4);
 
     // Second bottom here
 
-    var sBottom = document.getElementsByClassName('second-bottom')[0];
+    // var sBottom = document.getElementsByClassName('second-bottom')[0];
 
 
     // Bottom left start here
 
 
-    for (var i = 0; i < data.slice(5, 8).length; i++) {
-        sBottom.appendChild(createTile(data[i]))
-    }
+    // for (var i = 0; i < data.slice(5, 8).length; i++) {
+    //     sBottom.appendChild(createTile(data[i]))
+    // }
 
 
 
@@ -353,11 +358,11 @@ function loadTopStories(data) {
 
     // Third div start here
 
-    var thirdDiv = document.getElementsByClassName('third-div')[0];
+    // var thirdDiv = document.getElementsByClassName('third-div')[0];
 
-    for (var i = 0; i < data.slice(8, data.length).length; i++) {
-        thirdDiv.appendChild(createTile(data[i]))
-    }
+    // for (var i = 0; i < data.slice(8, data.length).length; i++) {
+    //     thirdDiv.appendChild(createTile(data[i]))
+    // }
 
     // thirdDiv.appendChild(createTile(data[8]))
     // thirdDiv.appendChild(createTile(data[9]))
@@ -474,6 +479,6 @@ function loadTopStories(data) {
 
     // rightFiveBottom.appendChild(fH10);
 
-}
+// }
 
 
