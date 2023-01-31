@@ -1,26 +1,27 @@
 
 
 
-// function fetchData() {
+function fetchData() {
 
-//     let key = '37a15cab-b02a-4274-a344-68fc3f5cb899';
-//     let baseURL = 'https://content.guardianapis.com/search'
-//     let url = `${baseURL}?section=news&show-fields=headline,trailText,thumbnail&api-key=${key}`;
-//     let xmlhttp = new XMLHttpRequest();
-//     xmlhttp.open('GET', url);
-//     xmlhttp.send();
+    let key = '37a15cab-b02a-4274-a344-68fc3f5cb899';
+    let baseURL = 'https://content.guardianapis.com/search'
+    let url = `${baseURL}?section=news&show-fields=headline,trailText,thumbnail&api-key=${key}`;
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', url);
+    xmlhttp.send();
 
-//     xmlhttp.onreadystatechange = function (evt) {
-//         if (evt.target.readyState == 4 && evt.target.status == 200) {
-//             let data = JSON.parse(evt.target.response)
+    xmlhttp.onreadystatechange = function (evt) {
+        if (evt.target.readyState == 4 && evt.target.status == 200) {
+            let data = JSON.parse(evt.target.response)
 
-//             console.log(data);
-//         }
+            var secondLeftTile = document.getElementsByClassName('second-middle')[0];
+            createTile(data.response.results[0], secondLeftTile)
+        }
 
-//     }
+    }
 
 
-// }
+}
 
 function fetchSportsData() {
 
@@ -34,7 +35,9 @@ function fetchSportsData() {
     xmlhttp.onreadystatechange = function (evt) {
         if (evt.target.readyState == 4 && evt.target.status == 200) {
             let data = JSON.parse(evt.target.response)
-            console.log(data);
+            console.log(data.response.results[0]);
+
+            createSPorts(data.response.results);
         }
 
     }
@@ -53,6 +56,7 @@ function fetchCulturesData() {
         if (evt.target.readyState == 4 && evt.target.status == 200) {
             let data = JSON.parse(evt.target.response)
             console.log(data);
+            createCulture(data.response.results);
         }
 
     }
@@ -82,9 +86,9 @@ fetchlifeAndStyleData();
 
 
 
-function createTile(data) {
+function createTile(param, secondLeftTile) {
 
-    var secondLeftTile = document.getElementsByClassName('second-middle')[0];
+    // var secondLeftTile = document.getElementsByClassName('second-middle')[0];
 
     var tileCon = document.createElement('div');
     tileCon.setAttribute('class', 'tile');
@@ -94,10 +98,10 @@ function createTile(data) {
     fTop.setAttribute('class', 'tile-body');
     tileCon.appendChild(fTop);
 
-    if (data.fields.thumbnail) {
+    if (param.fields.thumbnail) {
         let img2 = document.createElement('img');
         img2.setAttribute('class', 'img2');
-        img2.setAttribute('src', data.fields.thumbnail);
+        img2.setAttribute('src', param.fields.thumbnail);
         img2.setAttribute('alt', 'News Image');
         fTop.appendChild(img2);
     } else {
@@ -112,20 +116,52 @@ function createTile(data) {
 
     let titleHead3 = document.createElement('h3');
     titleHead3.setAttribute('class', 'tile-title');
-    titleHead3.innerText = data.fields.headline;
+    titleHead3.innerText = param.fields.headline;
 
     fbottom.appendChild(titleHead3);
 
     let titlepara = document.createElement('p');
     titlepara.setAttribute('class', 'tile-subtitle');
-    titlepara.innerText = data.fields.trailText;
+    titlepara.innerText = param.fields.trailText;
     fbottom.appendChild(titlepara);
 
     return tileCon;
 }
-// fetchData(createTile())
+fetchData()
 
-createTile()
+
+function createSPorts(sportsData) {
+
+    // var secondLeftTile = document.getElementsByClassName('sportsWrapper')[0];
+
+
+    for (var i = 0; i < sportsData.length; i++) {
+        var parentContainer = document.querySelector('.sportsWrapper');
+        createTile(sportsData[i], parentContainer)
+    }
+
+
+
+
+}
+
+
+function createCulture(sportsData) {
+
+    // var secondLeftTile = document.getElementsByClassName('sportsWrapper')[0];
+
+
+    for (var i = 0; i < sportsData.length; i++) {
+        var parentContainer = document.querySelector('.cultureWrapper');
+        createTile(sportsData[i], parentContainer)
+    }
+
+
+
+
+}
+
+// createTile()
 
 // function loadTopStories(data) {
 
