@@ -39,6 +39,9 @@
     height: 135%;
     margin: auto;
 }
+.top-head {
+    font-family: 'Segoe UI';
+}
 .second-top {
     height: 80px;
     /* border: 1px solid red; */
@@ -294,7 +297,7 @@
 .four-div {
     height: 110px;
     background-color: #1e2e79;
-    margin-top: 50px;
+    
 }
 
 .no-thumbnail{
@@ -305,4 +308,9 @@
     background-size: 50%;
     background-position: 50%;
 
+}
+
+.cultureHead {
+    margin-top: 70px;
+    font-family: 'Segoe UI';
 }
